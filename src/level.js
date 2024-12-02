@@ -8,9 +8,9 @@
       this.grounded = false
   
       this.image = new Image()
-      this.image.src = "./picture/karaktar_gang_128px.png"
+      this.image.src = ".picture/Overworld_Tileset.png"
   
-      this.frameWidth = 128
+      this.frameWidth = 129
       this.frameHeight = 128
       this.frameX = 0
       this.frameY = 0
@@ -25,11 +25,7 @@
       this.jumpSpeed = 20
       this.color = "255, 0, 0"
       
-         // Punch variables
-         this.isPunching = false // slåt spelaren
-         this.punchDuration = 350 // tiden du slår i ms
-         this.punchCooldown = 500 // tiden tills spelaren kan slå igen
-         this.lastPunchTime = 0 
+
 
     }
   
@@ -41,23 +37,6 @@
         if (this.game.input.keys.has("ArrowRight")) {
             this.speedX += this.maxSpeedX
         }
-
-      const currentTime = Date.now() // Get the current time
-
-      // slå när du trycker
-      if (this.game.input.keys.has("z") && !this.isPunching && currentTime - this.lastPunchTime > this.punchCooldown) {
-          console.log("Punch!")
-          this.isPunching = true
-          this.lastPunchTime = currentTime
-
-          // timeout
-          setTimeout(() => {
-              this.isPunching = false
-              console.log("Punch ended")
-          }, this.punchDuration)
-      }
-
-
 
 
       if (
@@ -78,11 +57,7 @@
         this.grounded = false
       }
   
-      if (this.grounded) {
-        this.speedY = 0
-      } else {
-        this.speedY += 1
-      }
+ 
   
       this.y += this.speedY
       this.x += this.speedX
@@ -114,10 +89,10 @@
         this.y = 150
         this.speedY = 0
         this.grounded = true
-        
       }
-
       this.x = 350
+
+      
 
       if (this.timer > this.interval) {
         this.frameX++

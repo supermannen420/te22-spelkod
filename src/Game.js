@@ -2,6 +2,7 @@ import Ball from "./ball"
 import GameObject from "./GameObject"
 import Input from "./Input"
 import Player from "./Player"
+import level from "./level"
 
 export default class Game { // skapar klassen
   constructor(width, height) { // klassens constructor
@@ -12,6 +13,7 @@ export default class Game { // skapar klassen
     console.log("Ny instans av game ", this.width)
     this.box = new GameObject(40, 100, 200, 200, "purple")
     this.ball = new Ball(100, 200, 100, 100, "red")
+    this.level = new level(0, 0, 50, 50, "green", this)
   }
 
   update(deltaTime) {
