@@ -7,8 +7,18 @@ export default class Enemy {
       this.speed = speed;
       this.health = health;
       this.game = game; // Referens till spelet för att få tillgång till spelarens position
-      this.color = 'red'; // Fiendens färg
       this.maxSpeed = 10; // Max hastighet på fienden
+
+      this.image = new Image();
+        this.image.src = "./picture/CharAni-Sheet4.png";
+        this.frameWidth = 32;
+        this.frameHeight = 38;
+        this.frameX = 0;
+        this.frameY = 0;
+        this.maxFrames = 7;
+        this.timer = 0;
+        this.fps = 20;
+        this.interval = 1000 / this.fps;
     }
   
     update(deltaTime, playerX, playerY) {
@@ -23,16 +33,16 @@ export default class Enemy {
       // this.x += Math.cos(angle) * this.maxSpeed;
       // this.y += Math.sin(angle) * this.maxSpeed;
 
-      if(this.x < 960){
+      if(this.x < 830){
         this.x += this.speed
     }
-    if(this.x > 960){
+    if(this.x > 830){
         this.x -= this.speed
     }
-    if(this.y < 520){
+    if(this.y < 465){
         this.y += this.speed
     }
-    if(this.y > 520){
+    if(this.y > 465){
         this.y -= this.speed
     }
 
@@ -48,14 +58,46 @@ export default class Enemy {
     if (this.game.input.keys.has("ArrowDown")) {
       this.y -= this.maxSpeed
     }
-  
+    
+     // Animationer
+     if (this.speedX !== 0 || this.speedY !== 0) {
+      this.frameY = 0; // Gång-animation
+      this.maxFrames = 4;
+  } else {
+      this.frameY = 0; // Stilla-animation
+      this.maxFrames = 1;
+  }
+
+  if (this.timer > this.interval) {
+      this.frameX++;
+      this.timer = 0;
+  } else {
+      this.timer += deltaTime;
+  }
+
+  if (this.frameX >= this.maxFrames) {
+      this.frameX = 0;
+  }
 
   
     }
   
     draw(ctx) {
-      ctx.fillStyle = this.color;
-      ctx.fillRect(this.x, this.y, this.width, this.height);
+     // ctx.fillStyle = this.color;
+     
+      
+       // Rita spelaren i mitten av skärmen
+       ctx.drawImage(
+        this.image,
+        this.frameWidth * this.frameX,
+        this.frameHeight * this.frameY,
+        this.frameWidth,
+        this.frameHeight,
+        this.x,
+        this.y,
+        this.width * 6,
+        this.height * 6
+    );
     }
 
     

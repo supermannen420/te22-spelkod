@@ -25,7 +25,24 @@ export default class Player extends GameObject {
         this.background = new Background('./picture/background.png', 1920, 1080);
     }
 
+    attack() {
+        const attackRange = 400; // Define the attack range
+        for (let enemy of this.game.enemies) {
+            const dx = enemy.x - this.x;
+            const dy = enemy.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < attackRange) {
+                enemy.takeDamage(50); // Deal 10 damage to the enemy
+                console.log("damake give");
+            }
+        }
+    }
+
     update(deltaTime) {
+        // Listen for attack button (e.g., spacebar)
+        if (this.game.input.keys.has(" ")) {
+            this.attack();
+        }
         // Återställ hastighet
         this.speedX = 0;
         this.speedY = 0;
@@ -74,7 +91,7 @@ export default class Player extends GameObject {
 
     draw(ctx) {
         // Rita bakgrunden först
-        this.background.draw(ctx);
+       // this.background.draw(ctx);
 
         // Rita spelaren i mitten av skärmen
         ctx.drawImage(
