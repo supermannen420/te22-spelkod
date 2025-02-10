@@ -21,7 +21,21 @@ export default class Enemy {
         this.interval = 1000 / this.fps;
     }
   
+    attack(player) {
+        const attackRange = 150; // Define the attack range
+        const dx = player.x - this.x;
+        const dy = player.y - this.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < attackRange) {
+            player.takeDamage(10); // Deal 10 damage to the player
+            // Play attack animation (this would be a method you need to implement)
+            
+        }
+    }
+
     update(deltaTime, playerX, playerY) {
+        // Call the attack 
+        this.attack(this.game.player);
       // // Få avståndet till spelaren
       // const dx = 960 - this.x;
       // const dy = 520 - this.y;
@@ -111,4 +125,3 @@ export default class Enemy {
       }
     }
   }
-  

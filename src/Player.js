@@ -3,8 +3,12 @@ import Background from "./Background"; // Importera bakgrundshanteraren
 
 export default class Player extends GameObject {
     constructor(x, y, width, height, color, game) {
+        
+       // this.health = 100;
+        
         super(x, y, width, height, color);
         this.game = game;
+        
 
         this.image = new Image();
         this.image.src = "./picture/karaktar_gang_128px.png";
@@ -106,4 +110,12 @@ export default class Player extends GameObject {
             this.height * 6
         );
     }
+
+    takeDamage(damage) {
+        this.health -= damage;
+        if (this.health <= 0) {
+          // Döda fienden om hälsan är 0
+          this.game.removePlayer(this); // Anropa spelets metod för att ta bort fienden
+        }
+      }
 }

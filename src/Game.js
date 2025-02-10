@@ -14,6 +14,7 @@ export default class Game {
     this.input = new Input(this);
     this.player = new Player(835,375, 50, 50, "green", this);
     
+    
 
     this.box = new GameObject(40, 100, 200, 200, 0, "purple");
     this.ball = new Ball(100, 200, 100, 100, 0, "red");
@@ -29,20 +30,21 @@ export default class Game {
     this.enemyHeight = 50;
   }
 
-  update(deltaTime) {
-    this.background.update(this.player.speedX, this.player.speedY);
-    this.player.update(deltaTime);
+    update(deltaTime) {
+        this.background.update(this.player.speedX, this.player.speedY);
+        this.player.update(deltaTime);
 
-    for (let enemy of this.enemies) {
-      enemy.update(deltaTime, this.player.x, this.player.y);
-    }
+        for (let enemy of this.enemies) {
+            enemy.update(deltaTime, this.player.x, this.player.y); // Update enemy with player position
+            enemy.attack(this.player); // Check if enemy should attack the player
+        }
 
-    this.enemySpawnTimer += deltaTime;
-    if (this.enemySpawnTimer > this.enemySpawnRate) {
-      this.spawnEnemy();
-      this.enemySpawnTimer = 0;
-      this.enemySpawnRate = Math.max(500, this.enemySpawnRate - 100);
-    }
+        this.enemySpawnTimer += deltaTime;
+        if (this.enemySpawnTimer > this.enemySpawnRate) {
+            this.spawnEnemy();
+            this.enemySpawnTimer = 0;
+            this.enemySpawnRate = Math.max(500, this.enemySpawnRate - 100);
+        }
 
     
   }
@@ -57,6 +59,7 @@ export default class Game {
   }
 
   spawnEnemy() {
+    
     const spawnDistance = 200;
     const angle = Math.random() * Math.PI * 2;
     const x = 960 + Math.cos(angle) * spawnDistance;
@@ -64,6 +67,7 @@ export default class Game {
 
     const enemy = new Enemy(x, y, this.enemyWidth, this.enemyHeight, this.enemySpeed, this.enemyHealth, this);
     this.enemies.push(enemy);
+
   }
 
   removeEnemy(enemy) {
@@ -73,5 +77,11 @@ export default class Game {
     }
   }
 
+  removePlayer(Player) {
+    const index = this.enemies.indexOf(enemy);
+    if (index > -1) {
+      this.player.splice(index, 1);
+    }
+  }
   
 }
