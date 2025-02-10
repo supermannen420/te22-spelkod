@@ -1,38 +1,48 @@
-import Layer from './Layer'
-
 export default class Background {
-  constructor(game) {
-    this.game = game
-    this.width = 1708
-    this.height = 500
+  constructor(imageSrc, width, height) {
+    this.image = new Image();
+    this.image.src = imageSrc;
+    this.width = width;
+    this.height = height;
 
-    this.fg = new Image()
-    this.fg.src = "./pictures/foreground_layer.png"
-    this.gl = new Image()
-    this.gl.src = "./pictures/ground_layer.png"
-    this.ml = new Image()
-    this.ml.src = "./pictures/middle_layer.png"
-    this.sl = new Image()
-    this.sl.src = "./pictures/sky_layer.png"
+    this.offsetX = 0; // Förskjutning i X-led
+    this.offsetY = 0; // Förskjutning i Y-led
 
-    this.backgroundLayers = [
-      new Layer(this.game, this.width, this.height, 0.1, this.sl),
-      new Layer(this.game, this.width, this.height, 0.2, this.ml),
-      new Layer(this.game, this.width, this.height, 0.5, this.gl),
-      new Layer(this.game, this.width, this.height, 1, this.fg)
-    ]
+    this.image.onload = () => {
+      console.log("Background image loaded successfully");
+      this.isLoaded = true; // Bilden är laddad
+    };
+
+    this.image.onerror = () => {
+      console.error("Failed to load background image");
+      this.isLoaded = false; // Bilden kunde inte laddas
+    };
   }
 
-  update(deltaTime) {
-    this.backgroundLayers.forEach(layer => {
-      layer.update(deltaTime)
-    })
+  update(speedX, speedY) {
+    // Rörelse för bakgrunden (inverterad spelarens rörelse)
+    this.offsetX -= speedX;
+    this.offsetY -= speedY;
+
+    // Begränsa förskjutning för att repetera bakgrunden
+    this.offsetX %= this.width;
+    this.offsetY %= this.height;
   }
 
   draw(ctx) {
-    this.backgroundLayers.forEach(layer => {
-      layer.draw(ctx)
-    })
-  }
+    if (!this.isLoaded) return; // Vänta tills bilden är laddad
 
+    // Rita bakgrundens fyra sektioner för att täcka canvasen
+    for (let x = -1; x <= 1; x++) {
+      for (let y = -1; y <= 1; y++) {
+        ctx.drawImage(
+          this.image,
+          this.offsetX + x * this.width,
+          this.offsetY + y * this.height,
+          this.width,
+          this.height
+        );
+      }
+    }
+  }
 }

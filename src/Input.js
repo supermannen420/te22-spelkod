@@ -17,7 +17,11 @@ export default class Input {
             this.keys.delete(event.key)
   
         })
+
+        
+       
   
   
     }
+    
   }
