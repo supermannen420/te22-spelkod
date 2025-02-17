@@ -36,7 +36,7 @@ export default class Player extends GameObject {
             const dy = enemy.y - this.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
             if (distance < attackRange) {
-                enemy.takeDamage(50); // Deal 10 damage to the enemy
+                enemy.takeDamage(10); // Deal 10 damage to the enemy
                 console.log("damake give");
             }
         }

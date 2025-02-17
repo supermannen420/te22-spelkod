@@ -28,6 +28,8 @@ export default class Game {
     this.enemyHealth = 50;
     this.enemyWidth = 50;
     this.enemyHeight = 50;
+
+    this.score = 0;
   }
 
     update(deltaTime) {
@@ -60,13 +62,14 @@ export default class Game {
 
   spawnEnemy() {
     
-    const spawnDistance = 200;
+    const spawnDistance = 500;
     const angle = Math.random() * Math.PI * 2;
     const x = 960 + Math.cos(angle) * spawnDistance;
     const y = 520 + Math.sin(angle) * spawnDistance;
 
     const enemy = new Enemy(x, y, this.enemyWidth, this.enemyHeight, this.enemySpeed, this.enemyHealth, this);
     this.enemies.push(enemy);
+    this.enemyHealth = this.enemyHealth + 20;
 
   }
 
@@ -74,6 +77,9 @@ export default class Game {
     const index = this.enemies.indexOf(enemy);
     if (index > -1) {
       this.enemies.splice(index, 1);
+      this.score ++;
+      console.log(this.score);
+      
     }
   }
 
