@@ -1,4 +1,4 @@
-import EnemyImage from "./te22-spelkod/picture/CharAni-Sheet4.png";
+import EnemyImage from "./assets/CharAni-Sheet4.png";
 
 export default class Enemy {
     constructor(x, y, width, height, speed, health, game) {

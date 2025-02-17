@@ -4,7 +4,7 @@ import Input from "./Input";
 import Player from "./Player";
 import Background from "./Background";
 import Enemy from "./Enemy"; // Importera fiende-klassen
-import backgroundImg from "./te22-spelkod/picture/floor_128px.png";
+import backgroundImg from "./assets/floor_128px.png";
 
 
 
