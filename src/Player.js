@@ -1,5 +1,8 @@
 import GameObject from "./GameObject";
-import Background from "./Background"; // Importera bakgrundshanteraren
+import Background from "./Background";
+import playerImage from "/home/elton/code/te22-spelkod/picture/karaktar_gang_128px.png";
+import backgroundImage from "/home/elton/code/te22-spelkod/picture/floor_128px.png";
+
 
 export default class Player extends GameObject {
     constructor(x, y, width, height, color, game) {
@@ -11,7 +14,7 @@ export default class Player extends GameObject {
         
 
         this.image = new Image();
-        this.image.src = "./picture/karaktar_gang_128px.png";
+        this.image.src = playerImage;
 
         this.frameWidth = 129;
         this.frameHeight = 129;
@@ -26,7 +29,7 @@ export default class Player extends GameObject {
         this.speedY = 0;
 
         // Bakgrund
-        this.background = new Background('./picture/background.png', 1920, 1080);
+        this.background = new Background(backgroundImage, 1920, 1080);
     }
 
     attack() {

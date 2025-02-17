@@ -46,10 +46,11 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  
 
-    height: 100%;
-    overflow-y: hidden;
-    padding: 10%;
+  height: 100%;
+  overflow-y: hidden;
+  padding: 1%;
  
 }
 

@@ -1,3 +1,5 @@
+import EnemyImage from "/home/elton/code/te22-spelkod/picture/CharAni-Sheet4.png";
+
 export default class Enemy {
     constructor(x, y, width, height, speed, health, game) {
       this.x = x;
@@ -10,7 +12,7 @@ export default class Enemy {
       this.maxSpeed = 10; // Max hastighet på fienden
 
       this.image = new Image();
-        this.image.src = "./picture/CharAni-Sheet4.png";
+        this.image.src = EnemyImage;
         this.frameWidth = 32;
         this.frameHeight = 38;
         this.frameX = 0;
