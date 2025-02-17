@@ -118,12 +118,12 @@ export default class Enemy {
 
     
   
-    // Metod för att ta skada
+    // funktion för att ta skada
     takeDamage(damage) {
       this.health -= damage;
       if (this.health <= 0) {
-        // Döda fienden om hälsan är 0
-        this.game.removeEnemy(this); // Anropa spelets metod för att ta bort fienden
+        // Döda fienden om livet är 0
+        this.game.removeEnemy(this); // Anropa funktion för att ta bort fienden
       }
     }
   }
