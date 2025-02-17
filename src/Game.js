@@ -7,7 +7,7 @@ import Enemy from "./Enemy"; // Importera fiende-klassen
 import backgroundImg from "./assets/floor_128px.png";
 
 
-
+ 
 export default class Game {
   constructor(width, height) {
     this.width = width;
