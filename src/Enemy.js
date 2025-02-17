@@ -1,4 +1,4 @@
-import EnemyImage from "/home/elton/code/te22-spelkod/picture/CharAni-Sheet4.png";
+import EnemyImage from "./home/elton/code/te22-spelkod/picture/CharAni-Sheet4.png";
 
 export default class Enemy {
     constructor(x, y, width, height, speed, health, game) {

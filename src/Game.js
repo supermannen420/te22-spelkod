@@ -4,6 +4,8 @@ import Input from "./Input";
 import Player from "./Player";
 import Background from "./Background";
 import Enemy from "./Enemy"; // Importera fiende-klassen
+import backgroundImg from "./home/elton/code/te22-spelkod/picture/floor_128px.png";
+
 
 
 export default class Game {
@@ -19,7 +21,7 @@ export default class Game {
     this.box = new GameObject(40, 100, 200, 200, 0, "purple");
     this.ball = new Ball(100, 200, 100, 100, 0, "red");
 
-    this.background = new Background("picture/floor_128px.png", width, height);
+    this.background = new Background(backgroundImg, width, height);
 
     this.enemies = [];
     this.enemySpawnRate = 5000;
