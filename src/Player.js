@@ -1,7 +1,7 @@
 import GameObject from "./GameObject";
 import Background from "./Background";
-import playerImage from "./home/elton/code/te22-spelkod/picture/karaktar_gang_128px.png";
-import backgroundImage from "./home/elton/code/te22-spelkod/picture/floor_128px.png";
+import playerImage from "./te22-spelkod/picture/karaktar_gang_128px.png";
+import backgroundImage from "./te22-spelkod/picture/floor_128px.png";
 
 
 export default class Player extends GameObject {
